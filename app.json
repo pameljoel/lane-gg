@@ -1,0 +1,6 @@
+{
+  "name": "lane-gg",
+  "description": "lane-gg",
+  "image": "heroku/gradle",
+  "addons": []
+}
