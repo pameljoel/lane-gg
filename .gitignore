@@ -4,3 +4,6 @@
 /.tmp
 /.sass-cache
 /bower_components
+.idea
+build
+*.iml
