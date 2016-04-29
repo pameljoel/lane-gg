@@ -59,8 +59,5 @@ task deployFrontend {
 }
 
 task stage {
-  dependsOn deployFrontend
-  doLast {
-    build
-  }
+  dependsOn build
 }

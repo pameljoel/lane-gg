@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class HelloWorldController{
 
-  @RequestMapping(method = arrayOf(GET),path = arrayOf("/hello-world"))
+  @RequestMapping(method = arrayOf(GET),path = arrayOf("/api/hello-world"))
   fun helloWorld(): String {
     return "hello world"
   }
