@@ -13,7 +13,6 @@ buildscript {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 		classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
     classpath "com.moowork.gradle:gradle-node-plugin:0.12"
-    classpath "gradle.plugin.com.craigburke.gradle:bower-installer-gradle:2.5.1"
     classpath 'com.moowork.gradle:gradle-grunt-plugin:0.12'
   }
 }
@@ -21,7 +20,6 @@ buildscript {
 apply plugin: 'kotlin'
 apply plugin: 'spring-boot'
 apply plugin: 'com.moowork.node'
-apply plugin: "com.craigburke.bower-installer"
 apply plugin: 'com.moowork.grunt'
 
 jar {
@@ -47,8 +45,11 @@ task wrapper(type: Wrapper) {
 	gradleVersion = '2.12'
 }
 
-bowerInstall.dependsOn npmInstall
-grunt_build.dependsOn bowerInstall
+task bower(dependsOn: 'npmInstall', type: Exec){
+  commandLine "./node_modules/.bin/bower", 'install'
+}
+
+grunt_build.dependsOn bower
 
 task deployFrontend {
   dependsOn grunt_build
