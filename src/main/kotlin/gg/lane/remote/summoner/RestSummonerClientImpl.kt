@@ -11,9 +11,7 @@ import org.springframework.stereotype.Component
 import org.springframework.web.client.RestOperations
 
 @Component
-class RestSummonerClientImpl @Autowired constructor(@Value("\${riot.api.key}") val apiKey: String, val restOperations: RestOperations): RestRiotClient, RestSummonerClient {
-  override fun apiKey(): String  = apiKey
-  override fun version() = "v1.4"
+class RestSummonerClientImpl @Autowired constructor(@Value("\${riot.api.key}") override val apiKey: String, val restOperations: RestOperations): RestRiotClient("v1.4", apiKey), RestSummonerClient {
 
   override fun getSummonerByName(name: String, region: Region): SummonerDTO? {
     val uri = uri("/summoner/by-name/" + name, region)
