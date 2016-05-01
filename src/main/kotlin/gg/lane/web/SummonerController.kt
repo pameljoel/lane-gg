@@ -1,5 +1,7 @@
 package gg.lane.web
 
+import gg.lane.model.Game
+import gg.lane.model.Region
 import gg.lane.model.Summoner
 import gg.lane.service.SummonerService
 import org.springframework.beans.factory.annotation.Autowired
@@ -16,5 +18,10 @@ open class SummonerController @Autowired constructor(val summonerService: Summon
   @RequestMapping(method = arrayOf(RequestMethod.GET), path = arrayOf("/{name}"))
   fun summonerByName(@PathVariable name: String): List<Summoner> {
     return summonerService.summonersByName(name).toList().toBlocking().first()
+  }
+
+  @RequestMapping(method = arrayOf(RequestMethod.GET), path = arrayOf("/{region}/{id}/match"))
+  fun summonerMatch(@PathVariable region: Region, @PathVariable id: Long): Game? {
+    return summonerService.gameBySummoner(id, region).toBlocking().first()
   }
 }
