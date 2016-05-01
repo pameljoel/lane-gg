@@ -1,14 +1,29 @@
 .search-summoner{
-  input{
-    width: 100%;
-    padding: 10px 20px;
-    border:3px solid $brand-color;
-    background: rgba(0,0,0,.3);
-    color: white;
-    text-transform: uppercase;
 
-    @include border-radius(10px);
+  &-container{
+
   }
+
+  &-input{
+    input{
+      width: 100%;
+      padding: 10px 20px;
+      border:3px solid $brand-color;
+      background: rgba(0,0,0,.3);
+      color: white;
+      text-transform: uppercase;
+      @include border-radius(10px);
+
+      &:active,&:focus{
+        background: $brand-color;
+        outline: none;
+        .search-summoner-results{
+          display: none;
+        }
+      }
+    }
+  }
+
   &-results{
     margin:0;
     padding:0;
@@ -27,6 +42,7 @@
       padding:10px 20px;
       border-bottom: 1px solid $gray-lighter;
       cursor: pointer;
+      color: $brand-color;
       &:last-child{
         border-bottom: none;
       }
