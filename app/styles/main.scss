@@ -1,6 +1,7 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+// endbower
 
 @import "helpers/variables";
 @import "helpers/mixins";
@@ -13,4 +14,4 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import "components/buttons";
 @import "components/footer";
 @import "components/search";
-// endbower
+
