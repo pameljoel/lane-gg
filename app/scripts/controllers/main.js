@@ -17,7 +17,7 @@ angular.module('lolAppApp')
     
 
     $scope.submit = function(summonerName){
-      console.log('looking for summoner' + summonerName);
+      console.log('looking for summoner ' + summonerName);
         
       $http.get('https://lane-gg.herokuapp.com/api/summoner/' + summonerName).then(function(result){
           $scope.summoners = result.data;

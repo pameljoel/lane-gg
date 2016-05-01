@@ -1,5 +1,16 @@
+html, body{
+  height: 100%;
+}
 body{
   background: image-url('lol-wallpaper.jpg');
   -webkit-background-size: cover;
   background-size: cover;
+}
+.page-wrap{
+    min-height: 100%;
+    margin-bottom: -100px; 
+    &:after {
+      content: "";
+      display: block;
+  }
 }
