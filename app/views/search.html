@@ -1,24 +1,17 @@
-
-<p>This is the search view.</p>
-
 <div class="search-summoner-container">
 
   <div class="row">
     <div class="col-xs-6 col-xs-offset-3">
 
       <div class="search-summoner-input">
-        <form action="submit" id="searchSummoner" class="search-summoner">
-          <input type="text" value="type your summoner name" placeholder="type your summoner name"/>
+        <form id="searchSummoner" class="search-summoner" ng-submit="submit(summonerName)">
+          <input class="search-summoner-input-field" type="text" value="type your summoner name" placeholder="type your summoner name" ng-model="summonerName"/>
+          <input class="search-summoner-input-button" type="submit" value="submit" name=""/>
         </form>
       </div>
 
-      <ul class="search-summoner-results">
-        <li>username 1 <span class="search-summoner-results-server">EUW</span></li>
-        <li>username 2 <span class="search-summoner-results-server">NA</span></li>
-        <li>username 3 <span class="search-summoner-results-server">EWN</span></li>
-        <li>username 4 <span class="search-summoner-results-server">EUW</span></li>
-        <li>username 5 <span class="search-summoner-results-server">EUW</span></li>
-        <li>username 6 <span class="search-summoner-results-server">EUW</span></li>
+      <ul class="search-summoner-results" ng-show="summonerName">
+        <li ng-repeat="item in summoners">{{item.name}} <small> | level: {{item.summonerLevel}} </small> <span class="search-summoner-results-server">{{item.region}}</span></li>
       </ul>
     </div>
   </div>
