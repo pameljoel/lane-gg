@@ -10,7 +10,7 @@ public class SummonerDTO implements Serializable {
   private String name;
   private Integer profileIconId;
   private Long revisionDate;
-  private Long summonerLevel;
+  private Integer summonerLevel;
 
   public Long getId() {
     return id;
@@ -44,11 +44,11 @@ public class SummonerDTO implements Serializable {
     this.revisionDate = revisionDate;
   }
 
-  public Long getSummonerLevel() {
+  public Integer getSummonerLevel() {
     return summonerLevel;
   }
 
-  public void setSummonerLevel(Long summonerLevel) {
+  public void setSummonerLevel(Integer summonerLevel) {
     this.summonerLevel = summonerLevel;
   }
 }
