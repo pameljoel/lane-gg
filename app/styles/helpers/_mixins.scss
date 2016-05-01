@@ -1,0 +1,5 @@
+@mixin border-radius($number){
+  -webkit-border-radius: $number;
+  -moz-border-radius: $number;
+  border-radius: $number;
+}
