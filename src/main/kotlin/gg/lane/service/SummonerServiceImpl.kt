@@ -47,14 +47,11 @@ class SummonerServiceImpl @Autowired constructor(
   }
 
   override fun gameBySummoner(id: Long, region: Region): Observable<Game> {
-    return Observable.from(restCurrentGameClient.gameBySummoner(id, region))
-      .filter { it != null }
-      .map{ it!!}
-      .flatMap { game ->
-        Observable.from(restStaticDataClient.champions()).map { champions ->
-          gameMapper.map(game, champions)
-        }
-      }
+    return Observable.zip(
+      Observable.from(restCurrentGameClient.gameBySummoner(id, region)).filter { it != null }.map{ it!!},
+      Observable.from(restStaticDataClient.champions()),
+      { game, champions -> gameMapper.map(game,champions) }
+    )
   }
 
 }
