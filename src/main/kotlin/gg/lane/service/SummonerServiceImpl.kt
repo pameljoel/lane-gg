@@ -5,6 +5,7 @@ import gg.lane.model.Game
 import gg.lane.model.Region
 import gg.lane.model.Summoner
 import gg.lane.remote.currentgame.RestCurrentGameClient
+import gg.lane.remote.staticdata.RestStaticDataClient
 import gg.lane.remote.summoner.RestSummonerClient
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -13,7 +14,12 @@ import rx.Observable
 import rx.schedulers.Schedulers
 
 @Service
-class SummonerServiceImpl @Autowired constructor(val restSummonerClient: RestSummonerClient, val restCurrentGameClient: RestCurrentGameClient, val gameMapper: GameMapper): SummonerService{
+class SummonerServiceImpl @Autowired constructor(
+  val restSummonerClient: RestSummonerClient,
+  val restCurrentGameClient: RestCurrentGameClient,
+  val restStaticDataClient: RestStaticDataClient,
+  val gameMapper: GameMapper): SummonerService{
+
   companion object {
     val logger = LoggerFactory.getLogger(SummonerServiceImpl::class.java)
   }
@@ -44,7 +50,11 @@ class SummonerServiceImpl @Autowired constructor(val restSummonerClient: RestSum
     return Observable.from(restCurrentGameClient.gameBySummoner(id, region))
       .filter { it != null }
       .map{ it!!}
-      .map{gameMapper.map(it)}
+      .flatMap { game ->
+        Observable.from(restStaticDataClient.champions()).map { champions ->
+          gameMapper.map(game, champions)
+        }
+      }
   }
 
 }
