@@ -50,7 +50,7 @@ class SummonerServiceImpl @Autowired constructor(
     return Observable.zip(
       Observable.from(restCurrentGameClient.gameBySummoner(id, region)).filter { it != null }.map{ it!!},
       Observable.from(restStaticDataClient.champions()),
-      { game, champions -> gameMapper.map(game,champions) }
+      { game, champions -> gameMapper.map(game, id, champions) }
     )
   }
 
