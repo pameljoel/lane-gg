@@ -30,7 +30,7 @@
         <!-- character card start PLAYER'S TEAM -->
         <div class="col-sm-1"></div>
         <div class="col-sm-2"  ng-repeat="item in match.alliedTeam">
-            <div class="current-game-summoner-card blue-team" style="background-image:url('{{item.championImage}}')">
+            <div class="current-game-summoner-card blue-team" style="background-image:url('{{item.champion.image}}')">
 
                 <div class="current-game-summoner-mastery"></div>
                 <div class="current-game-summoner-name">{{item.summonerName}}</div>
@@ -56,7 +56,7 @@
         <!-- character card start ENNEMY TEAM -->
         <div class="col-sm-1"></div>
         <div class="col-sm-2"  ng-repeat="item in match.ennemyTeam">
-            <div class="current-game-summoner-card red-team" style="background-image:url('{{item.championImage}}')">
+            <div class="current-game-summoner-card red-team" style="background-image:url('{{item.champion.image}}')">
 
                 <div class="current-game-summoner-mastery"></div>
                 <div class="current-game-summoner-name">{{item.summonerName}}</div>
