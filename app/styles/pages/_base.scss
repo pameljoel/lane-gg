@@ -8,9 +8,13 @@ body{
 }
 .page-wrap{
     min-height: 100%;
-    margin-bottom: -100px; 
+    //margin-bottom: -100px; 
     &:after {
       content: "";
       display: block;
   }
+}
+
+*{
+  font-family: 'Lato', sans-serif;
 }

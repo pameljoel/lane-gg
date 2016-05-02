@@ -69,3 +69,29 @@
     }
   }
 }
+
+.homepage-cta{
+  
+  
+  &-container{
+    text-align:center;
+    
+    color:white;
+    .homepage-cta-main-text{
+      margin-top:50px;
+      h1{
+        font-weight:900;
+      }
+    }
+  }
+  &-item{
+    border: 1px solid white;
+    min-height:220px;
+    @include border-radius(5px);
+    
+    margin-top:50px;
+    margin-bottom:40px;
+    background: rgba(0,0,0,.3);
+    padding:20px;
+  }
+}

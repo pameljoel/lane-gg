@@ -1,0 +1,55 @@
+.current-game{
+    &-percentage-container{
+        text-align:center;
+        color:white;
+    }
+    &-percentage{
+        span{
+            font-weight:900;
+        }
+        .winning{
+            color:green;
+        }
+        .losing{
+            color:red;
+        }
+        &-circle{
+            background:rgba(0,0,0,.5);
+            border-radius:100%;
+            width: 100px;
+            height: 100px;
+            margin: auto;
+            border-radius: 100%;
+            border: 5px solid rgba(0,0,0,.5);
+            h1{
+                line-height:60px;
+            }
+        }
+    }
+    &-summoner{
+        &-card{
+            background-size:cover;
+            height:300px;
+            position:relative;
+            margin-bottom: 20px;
+        }
+        
+        &-mastery{
+            
+        }
+        &-name{
+            position: absolute;
+            bottom: 0;
+            text-align: center;
+            width: 100%;
+            right: 0;
+            left: 0;
+            line-height: 30px;
+            height: 30px;
+            background: rgba(0,0,0,.5);
+        }
+        &-most-played{
+            
+        }
+    }
+}

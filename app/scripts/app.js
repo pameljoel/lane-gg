@@ -26,7 +26,7 @@ angular
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
-      .when('/results', {
+      .when('/results/:region/:id', {
         templateUrl: 'views/results.html',
         controller: 'ResultsCtrl',
         controllerAs: 'results'

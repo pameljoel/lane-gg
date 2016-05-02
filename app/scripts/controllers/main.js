@@ -8,7 +8,7 @@
  * Controller of the lolAppApp
  */
 angular.module('lolAppApp')
-  .controller('MainCtrl', function ($scope, $http) {
+  .controller('MainCtrl', function ($scope, $http, $location) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -24,4 +24,9 @@ angular.module('lolAppApp')
       });
       
     };
+    
+    $scope.goTo = function(summoner){
+      $location.path("/results/" + summoner.region + "/" + summoner.id);
+    };
+    
   });

@@ -1,40 +1,80 @@
-<p>This is the results view.</p>
 <div class="current-game-percentage-container">
-    <div class="row">
+    <div class="row" ng-show="match">
         <div class="col-xs-12">
             <div class="current-game-percentage">
-                <h1>THE ODDS ARE <span class="winning">ON YOUR FAVOR</span></h1>
-                <div class="current-game-percentage-circle">75%</div>
+                <h1>
+                    THE ODDS ARE <br/>
+                    <span class="winning" ng-show="oddsPercentage >= 50">IN YOUR FAVOR</span>
+                    <span class="losing" ng-show="oddsPercentage < 50">NOT IN YOUR FAVOR</span>
+                </h1>
+                <div class="current-game-percentage-circle"><h1>{{oddsPercentage}}%</h1></div>
                 <p>go for it tiger!</p>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <div class="current-game-summoner-card your-team">
-                <div class="row">
-                    
-                    <!-- character card start -->
-                    <div class="col-xs-2">    
-                        <div class="current-game-summoner-mastery"></div>
-                        
-                        <div class="current-game-summoner-name"></div>
-                        <div class="current-game-summoner-most-played">
-                            <div class="row">
-                                <div class="col-xs-3"></div>
-                                <div class="col-xs-3"></div>
-                                <div class="col-xs-3"></div>
-                                <div class="col-xs-3"></div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- character card end -->
-                        
-                </div>
-                    
-                </div>
+    
+    <div class="row" ng-hide="match">
+        <div class="col-xs-12">
+            <div class="current-game-percentage">
+                <h1>Sorry</h1>
+                <p>this users seems not to be in a match right now, try again later.</p>
+                <a href="#/"><button class="btn btn-large">go back to home</button></a>
             </div>
         </div>
     </div>
+    
+    
+    <div class="row" ng-show="match">
+        
+                    
+        <!-- character card start BLUE TEAM -->
+        <div class="col-sm-1"></div>
+        <div class="col-sm-2"  ng-repeat="item in match.participants | limitTo : 5">    
+            <div class="current-game-summoner-card blue-team" style="background-image:url('{{item.championImage}}')">
+                
+                <div class="current-game-summoner-mastery"></div>
+                <div class="current-game-summoner-name">{{item.summonerName}}</div>
+                <div class="current-game-summoner-most-played">
+                    <div class="row">
+                        <div class="col-xs-3"></div>
+                        <div class="col-xs-3"></div>
+                        <div class="col-xs-3"></div>
+                        <div class="col-xs-3"></div>
+                    </div>
+                </div>
+                
+            </div>
+        
+        </div>
+        
+        <!-- character card end -->
+        
+    </div>
+          
+    <div class="row">
+            
+        <!-- character card start RED TEAM -->
+        <div class="col-sm-1"></div>
+        <div class="col-sm-2"  ng-repeat="item in match.participants | limitTo : 5 : 5">    
+            <div class="current-game-summoner-card red-team" style="background-image:url('{{item.championImage}}')">
+                
+                <div class="current-game-summoner-mastery"></div>
+                <div class="current-game-summoner-name">{{item.summonerName}}</div>
+                <div class="current-game-summoner-most-played">
+                    <div class="row">
+                        <div class="col-xs-3"></div>
+                        <div class="col-xs-3"></div>
+                        <div class="col-xs-3"></div>
+                        <div class="col-xs-3"></div>
+                    </div>
+                </div>
+                
+            </div>
+        
+        </div>
+        
+        <!-- character card end -->
+            
+    </div>
+                
 </div>

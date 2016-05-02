@@ -10,10 +10,70 @@
         </form>
       </div>
 
-      <ul class="search-summoner-results" ng-show="summonerName">
-        <li ng-repeat="item in summoners">{{item.name}} <small> | level: {{item.summonerLevel}} </small> <span class="search-summoner-results-server">{{item.region}}</span></li>
+      <ul class="search-summoner-results" ng-show="summoners">
+        <li ng-repeat="item in summoners" ng-click="goTo(item)">{{item.name}} <small> | level: {{item.summonerLevel}} </small> <span class="search-summoner-results-server">{{item.region}}</span></li>
       </ul>
     </div>
   </div>
 
+</div>
+
+<div class="homepage-cta-container">
+  
+  <div class="row">
+    <div class="homepage-cta-main-text">
+      <div class="col-xs-6 col-xs-offset-3">
+        <h1>SCARED OF THE ENEMY TEAM?</h1>
+        <p>Find out what’s your probability of winning your next matchup.</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      
+      
+  <div class="row">
+    <div class="col-xs-3">
+      <div class="homepage-cta-item">
+        <div class="homepage-cta-item-icon">
+          <img src="images/headstart.png" alt="headstart" />
+        </div>
+        <div class="homepage-cta-item-text">get an headstart on the match about to begin.</div>
+      </div>
+    </div>
+    
+    <div class="col-xs-3">
+      <div class="homepage-cta-item">
+        <div class="homepage-cta-item-icon">
+          <img src="images/eye.png" alt="headstart" />
+        </div>
+        <div class="homepage-cta-item-text">See how well your opponent knows his champion</div>
+      </div>
+    </div>
+    
+    <div class="col-xs-3">
+      <div class="homepage-cta-item">
+        <div class="homepage-cta-item-icon">
+          <img src="images/calculate.png" alt="headstart" />
+        </div>
+        <div class="homepage-cta-item-text">Calculate potential weaknesses in the enemy team</div>
+      </div>
+    </div>
+    
+    <div class="col-xs-3">
+      <div class="homepage-cta-item">
+        <div class="homepage-cta-item-icon">
+          <img src="images/threath.png" alt="headstart" />
+        </div>
+        <div class="homepage-cta-item-text">Calculate potential weaknesses in the enemy team</div>
+      </div>
+    </div>
+      
+      
+    </div>
+  </div>
+  
+    
+  </div>
 </div>
