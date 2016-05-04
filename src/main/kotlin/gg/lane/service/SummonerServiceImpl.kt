@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import rx.Observable
-import rx.schedulers.Schedulers
 
 @Service
 class SummonerServiceImpl @Autowired constructor(
@@ -28,27 +27,25 @@ class SummonerServiceImpl @Autowired constructor(
     val calls = Region.values()
       .map {region -> searchSummonerByNameAndRegion(name, region)}
 
-    return Observable.merge(calls).filter { it != null}.map { it!! }
+    return Observable.merge(calls)
   }
 
   fun searchSummonerByNameAndRegion(name: String, region: Region): Observable<Summoner> {
     logger.info("Searching summoner $name from $region")
 
-    return Observable.defer {
-      Observable
-        .from(restSummonerClient.getSummonerByName(name, region))
+    return restSummonerClient.getSummonerByName(name, region)
         .filter { it != null }
         .map {
           logger.info("Completed summoner $name from $region")
           it!!
         }
         .map { it -> Summoner(it.id, it.name, it.profileIconId, it.revisionDate, it.summonerLevel, region) }
-    }.subscribeOn(Schedulers.io())
+
   }
 
   override fun gameBySummoner(id: Long, region: Region): Observable<Game> {
     return Observable.zip(
-      Observable.from(restCurrentGameClient.gameBySummoner(id, region)).filter { it != null }.map{ it!!},
+      restCurrentGameClient.gameBySummoner(id, region).filter { it != null }.map{ it!!},
       Observable.from(restStaticDataClient.champions()),
       { game, champions -> gameMapper.map(game, id, champions) }
     )

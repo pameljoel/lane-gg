@@ -1,31 +1,40 @@
 package gg.lane.remote.currentgame
 
 import gg.lane.model.Region
+import gg.lane.providers.ApiKeyProvider
 import gg.lane.remote.RestRiotClient
 import gg.lane.remote.currentgame.dto.CurrentGameInfoDTO
 import gg.lane.remote.summoner.RestSummonerClientImpl
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.beans.factory.annotation.Value
-import org.springframework.scheduling.annotation.Async
-import org.springframework.scheduling.annotation.AsyncResult
 import org.springframework.stereotype.Component
 import org.springframework.web.client.HttpClientErrorException
 import org.springframework.web.client.RestOperations
 import org.springframework.web.util.UriComponentsBuilder
+import rx.Observable
+import rx.schedulers.Schedulers
 
 @Component
-class RestCurrentGameClientImpl @Autowired constructor(@Value("\${riot.api.key}") override val apiKey: String, val restOperations: RestOperations): RestRiotClient("v1.4", apiKey), RestCurrentGameClient{
+class RestCurrentGameClientImpl @Autowired constructor(val apiKeyProvider: ApiKeyProvider, val restOperations: RestOperations): RestRiotClient("v1.4"), RestCurrentGameClient{
+  companion object {
+    val logger = LoggerFactory.getLogger(RestSummonerClientImpl::class.java)
+  }
 
-  @Async
-  override fun gameBySummoner(id: Long, region: Region): AsyncResult<CurrentGameInfoDTO?> {
-    val uri = UriComponentsBuilder.fromHttpUrl("https://" + region.name.toLowerCase() + ".api.pvp.net/observer-mode/rest/consumer/getSpectatorGameInfo/" + region.spectatorRegion + "/" + id)
-      .queryParam("api_key", apiKey)
+  override fun gameBySummoner(id: Long, region: Region): Observable<CurrentGameInfoDTO?> {
+    val builder = UriComponentsBuilder.fromHttpUrl("https://" + region.name.toLowerCase() + ".api.pvp.net/observer-mode/rest/consumer/getSpectatorGameInfo/" + region.spectatorRegion + "/" + id)
 
-    try{
-      return AsyncResult(restOperations.getForObject(uri.toUriString(), CurrentGameInfoDTO::class.java));
-    } catch (error: HttpClientErrorException){
-      RestSummonerClientImpl.logger.warn("Error ${error.statusCode} for ${uri.build()}")
-      return AsyncResult(null)
-    }
+    return apiKeyProvider.regionalApiKey(region)
+      .map { apiKey ->
+        restOperations.getForObject(builder.queryParam("api_key", apiKey).toUriString(), CurrentGameInfoDTO::class.java)
+      }
+      .onErrorReturn { error ->
+        if (error is HttpClientErrorException) {
+          logger.warn("Error ${error.statusCode} for ${builder.toUriString()}")
+          null
+        } else {
+          logger.error("Error during gameBySummoner $id, $region", error)
+          throw error
+        }
+      }.limit(1)
   }
 }
