@@ -14,9 +14,9 @@ Running `grunt test` will run the unit tests with karma.
 
 ## Backend technical Todo list
 
-* [*] Introduce rate limiting
+* [x] Introduce rate limiting
 * [ ] Improve rate limiting
-* [*] Use spring DeferredResult in controllers
+* [x] Use spring DeferredResult in controllers
 * [ ] Serve the frontend app
 * [ ] Better error handling
 * [ ] Introduce caching
