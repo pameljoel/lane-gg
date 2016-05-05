@@ -15,7 +15,7 @@ class GameMapper @Autowired constructor(val participantMapper: ParticipantMapper
   fun map(game: CurrentGameInfoDTO, summonerId: Long, champions: Map<Long, ChampionDTO>, masteries: Map<Long, List<ChampionMasteryDTO>>): Game {
     val winningOds = Random().nextInt(100)  //FIXME
     val summonerTeam = game.participants.find { it.summonerId == summonerId }!!.teamId
-    val mappedSummoners = game.participants.map { participantMapper.map(it, champions) }.partition { it.team == Team.fromCode(summonerTeam) }
+    val mappedSummoners = game.participants.map { participantMapper.map(it, champions, masteries[it.summonerId]!!) }.partition { it.team == Team.fromCode(summonerTeam) }
     return Game(game.gameId, winningOds, mappedSummoners.first, mappedSummoners.second)
   }
 
