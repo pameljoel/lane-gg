@@ -26,7 +26,7 @@ open class SummonerController @Autowired constructor(val summonerService: Summon
   @RequestMapping(method = arrayOf(RequestMethod.GET), path = arrayOf("/{region}/{id}/match"))
   fun summonerMatch(@PathVariable region: Region, @PathVariable id: Long): DeferredResult<Game?> {
     val res = DeferredResult<Game?>()
-    summonerService.gameBySummoner(id, region).subscribe({ res.setResult(it)}, {res.setErrorResult(it)}, {if (!res.isSetOrExpired) {res.setErrorResult("Game not found")}})
+    summonerService.gameBySummoner(id, region).subscribe({ res.setResult(it)}, {res.setErrorResult(it)}, {if (!res.isSetOrExpired) {throw RuntimeException()}}) //FIXME
     return res
   }
 }
