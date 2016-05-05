@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.context.request.async.DeferredResult
 
 
 @RestController
@@ -16,12 +17,16 @@ import org.springframework.web.bind.annotation.RestController
 open class SummonerController @Autowired constructor(val summonerService: SummonerService){
 
   @RequestMapping(method = arrayOf(RequestMethod.GET), path = arrayOf("/{name}"))
-  fun summonerByName(@PathVariable name: String): List<Summoner> {
-    return summonerService.summonersByName(name).toList().toBlocking().first()
+  fun summonerByName(@PathVariable name: String): DeferredResult<List<Summoner>> {
+    val res = DeferredResult<List<Summoner>>()
+    summonerService.summonersByName(name).toList().subscribe({ res.setResult(it)}, {res.setErrorResult(it)})
+    return res
   }
 
   @RequestMapping(method = arrayOf(RequestMethod.GET), path = arrayOf("/{region}/{id}/match"))
-  fun summonerMatch(@PathVariable region: Region, @PathVariable id: Long): Game? {
-    return summonerService.gameBySummoner(id, region).toBlocking().first()
+  fun summonerMatch(@PathVariable region: Region, @PathVariable id: Long): DeferredResult<Game?> {
+    val res = DeferredResult<Game?>()
+    summonerService.gameBySummoner(id, region).subscribe({ res.setResult(it)}, {res.setErrorResult(it)}, {if (!res.isSetOrExpired) {res.setErrorResult("Game not found")}})
+    return res
   }
 }
