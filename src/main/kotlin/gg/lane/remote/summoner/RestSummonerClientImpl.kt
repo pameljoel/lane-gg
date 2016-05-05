@@ -21,8 +21,11 @@ class RestSummonerClientImpl @Autowired constructor(val apiKeyProvider: ApiKeyPr
 
   override fun getSummonerByName(name: String, region: Region): Observable<SummonerDTO?> {
     return apiKeyProvider.regionalApiKey(region).map { apiKey ->
-      val uri = uri("/summoner/by-name/" + name, region, apiKey)
-      restOperations.exchange(uri.toUriString(), HttpMethod.GET, null, object : ParameterizedTypeReference<Map<String, SummonerDTO>>() {}).body[name.toLowerCase().replace(" ", "")]
+      val uri = uri("/summoner/by-name/" + name, region, apiKey).toUriString()
+      logger.info("Started " + uri)
+      val resp = restOperations.exchange(uri, HttpMethod.GET, null, object : ParameterizedTypeReference<Map<String, SummonerDTO>>() {}).body[name.toLowerCase().replace(" ", "")]
+      logger.info("Started " + uri)
+      resp
     }.onErrorReturn { error ->
       if (error is HttpClientErrorException){
         logger.warn("Error ${error.statusCode} for ${uri("/summoner/by-name/" + name, region, "").toUriString()}")
@@ -32,6 +35,6 @@ class RestSummonerClientImpl @Autowired constructor(val apiKeyProvider: ApiKeyPr
         logger.error("Error during summonerByName $name, $region", error)
         throw error
       }
-    }.limit(1)
+    }
   }
 }

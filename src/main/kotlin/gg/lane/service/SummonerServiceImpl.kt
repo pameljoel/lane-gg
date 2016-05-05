@@ -4,6 +4,8 @@ import gg.lane.mapper.GameMapper
 import gg.lane.model.Game
 import gg.lane.model.Region
 import gg.lane.model.Summoner
+import gg.lane.remote.championmastery.RestChampionMasteryClient
+import gg.lane.remote.championmastery.dto.ChampionMasteryDTO
 import gg.lane.remote.currentgame.RestCurrentGameClient
 import gg.lane.remote.staticdata.RestStaticDataClient
 import gg.lane.remote.summoner.RestSummonerClient
@@ -17,6 +19,7 @@ class SummonerServiceImpl @Autowired constructor(
   val restSummonerClient: RestSummonerClient,
   val restCurrentGameClient: RestCurrentGameClient,
   val restStaticDataClient: RestStaticDataClient,
+  val restChampionMasteryClient: RestChampionMasteryClient,
   val gameMapper: GameMapper): SummonerService{
 
   companion object {
@@ -44,11 +47,30 @@ class SummonerServiceImpl @Autowired constructor(
   }
 
   override fun gameBySummoner(id: Long, region: Region): Observable<Game> {
+    val staticData = Observable.from(restStaticDataClient.champions())
+    val gameAndMasteries = restCurrentGameClient.gameBySummoner(id, region)
+      .filter { it != null }
+      .map{ it!!}
+      .flatMap{ game ->
+        Observable.zip(
+          this.masteriesBySummoners(game.participants.map { it.summonerId }, region),
+          Observable.just(game),
+          {masteries, game -> Pair(game, masteries)}
+        )
+      }
+
     return Observable.zip(
-      restCurrentGameClient.gameBySummoner(id, region).filter { it != null }.map{ it!!},
-      Observable.from(restStaticDataClient.champions()),
-      { game, champions -> gameMapper.map(game, id, champions) }
+      staticData,
+      gameAndMasteries,
+      {staticData, gameWithMasteries -> gameMapper.map(gameWithMasteries.first, id, staticData, gameWithMasteries.second)}
     )
+  }
+
+  private fun masteriesBySummoners(ids: List<Long>,region: Region): Observable<Map<Long, List<ChampionMasteryDTO>>> {
+    val masteries = ids.map { summonerId ->
+      restChampionMasteryClient.championMasteryBySummoner(summonerId, region).map { it -> Pair(summonerId, it) }
+    }
+    return Observable.merge(masteries).toList().map { it.toMap() }
   }
 
 }

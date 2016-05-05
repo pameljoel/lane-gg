@@ -30,7 +30,7 @@ class DevelopementRateLimitedApiKeyProvider @Autowired constructor(@Value("\${ri
   }
 
   override fun regionalApiKey(region: Region): Observable<String> {
-    return observables[region]!!.filter{it.flag.compareAndSet(false, true)}.map { it.key };
+    return observables[region]!!.filter{it.flag.compareAndSet(false, true)}.map { it.key }.limit(1);
   }
 
   override fun globalApiKey(): Observable<String> {

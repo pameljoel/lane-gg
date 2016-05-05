@@ -12,7 +12,6 @@ import org.springframework.web.client.HttpClientErrorException
 import org.springframework.web.client.RestOperations
 import org.springframework.web.util.UriComponentsBuilder
 import rx.Observable
-import rx.schedulers.Schedulers
 
 @Component
 class RestCurrentGameClientImpl @Autowired constructor(val apiKeyProvider: ApiKeyProvider, val restOperations: RestOperations): RestRiotClient("v1.4"), RestCurrentGameClient{
@@ -25,7 +24,10 @@ class RestCurrentGameClientImpl @Autowired constructor(val apiKeyProvider: ApiKe
 
     return apiKeyProvider.regionalApiKey(region)
       .map { apiKey ->
-        restOperations.getForObject(builder.queryParam("api_key", apiKey).toUriString(), CurrentGameInfoDTO::class.java)
+        logger.info("Started " + builder.toUriString())
+        val resp = restOperations.getForObject(builder.queryParam("api_key", apiKey).toUriString(), CurrentGameInfoDTO::class.java)
+        logger.info("Completed " + builder.toUriString())
+        resp
       }
       .onErrorReturn { error ->
         if (error is HttpClientErrorException) {
@@ -35,6 +37,6 @@ class RestCurrentGameClientImpl @Autowired constructor(val apiKeyProvider: ApiKe
           logger.error("Error during gameBySummoner $id, $region", error)
           throw error
         }
-      }.limit(1)
+      }
   }
 }
