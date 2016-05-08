@@ -3,19 +3,3 @@
   -moz-border-radius: $number;
   border-radius: $number;
 }
-
-@mixin border-gradient( $px, $solid, $color ){
-    border-width: 0 0 $px 0;
-    border-style: $solid;
-    -webkit-border-image: 
-      -webkit-gradient(left top, right top, color-stop(0%, rgba(255,255,255,0)), color-stop(50%, rgba($color)), color-stop(100%, rgba(255,255,255,0)));
-    -webkit-border-image: 
-      -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, $color 50%, rgba(255,255,255,0) 100%);
-    -moz-border-image:
-      -moz-linear-gradient(left, rgba(255,255,255,0), $color 50%, rgba(255,255,255,0) 100%);
-    -o-border-image:
-      -o-linear-gradient(left, rgba(255,255,255,0) 0%, $color 50%, rgba(255,255,255,0) 100%);
-    border-image:
-      linear-gradient(to right, rgba(255,255,255,0) 0%, $color 50%, rgba(255,255,255,0) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff', GradientType=1 );
-}

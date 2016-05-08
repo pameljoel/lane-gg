@@ -9,10 +9,20 @@
             font-weight:900;
         }
         .winning{
-            color:green;
+            span{
+                color:green;
+            }
+            .current-game-percentage-circle{
+                box-shadow: 0px 0px 30px 0px green;
+            }
         }
         .losing{
-            color:red;
+            span{
+                color:red;
+            }
+            .current-game-percentage-circle{
+                box-shadow: 0px 0px 30px 0px red;
+            }
         }
         &-circle{
             background-color: $transparent-black-5;
@@ -39,24 +49,34 @@
         }
         
         &-champion{
-            background-image:image-url('champion-portrait-with-mastery.png');
-            width: 137px;
-            height: 211px;
+            background-image:image-url('mastery/champion-portrait-150px.png');
+            width: 100%;
+            max-width: image-width('mastery/champion-portrait-150px.png');
+            height: image-height('mastery/champion-portrait-150px.png');
             margin: auto;
             position: relative;
+            background-size: contain;
+            background-repeat: no-repeat;
             &-image{
                 border-radius: 100%;
                 overflow: hidden;
                 position: absolute;
-                width: 100px;
-                height: 100px;
+                width: 108px;
+                height: 108px;
                 top: 20px;
                 left: 20px;
                 img{
                     width:100%;
                  }   
             }
+            
             &-mastery{
+                background-image:image-url('mastery/mastery-1.png');
+                width:image-width('mastery/mastery-1.png');
+                height:image-height('mastery/mastery-1.png');
+                position:absolute;
+                bottom:0;
+                left: 20px;
             }
         }
         &-score{
@@ -90,6 +110,18 @@
         }
     }
 }
+
+
+@for $i from 0 through 6 {
+    .current-game-summoner-champion-mastery-#{$i} {
+        background-image:image-url('mastery/mastery-#{$i}.png');
+        width:image-width('mastery/mastery-#{$i}.png');
+        height:image-height('mastery/mastery-#{$i}.png');
+        position:absolute;
+        bottom:0;
+        left: 20px;
+    }
+};
 
 
 .biggest-threat, .weakest-link{
