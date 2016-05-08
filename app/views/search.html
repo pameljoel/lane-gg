@@ -2,17 +2,23 @@
 
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
-
-      <div class="search-summoner-input">
-        <form id="searchSummoner" class="search-summoner" ng-submit="submit(summonerName)">
-          <input class="search-summoner-input-field" type="text" value="type your summoner name" placeholder="type your summoner name" ng-model="summonerName"/>
-          <input class="search-summoner-input-button" type="submit" value="search now" name=""/>
-        </form>
+      
+      <div class="search-summoner-inner-container">
+        
+        <div class="search-summoner-input">
+          <form id="searchSummoner" class="search-summoner" ng-submit="submit(summonerName)">
+            <input class="search-summoner-input-field" type="text" value="type your summoner name" placeholder="type your summoner name" ng-model="summonerName"/>
+            <input ng-hide="summoners" class="search-summoner-input-button" type="submit" value="search now" name=""/>
+            <input ng-show="summoners" class="search-summoner-input-button" type="button" value="X" name="" />
+          </form>
+        </div>
+  
+        <ul class="search-summoner-results" ng-show="summoners">
+          <li ng-repeat="item in summoners" ng-click="goTo(item)">{{item.name}} <small class="summoner-level"> level: {{item.summonerLevel}} </small> <span class="search-summoner-results-server">{{item.region}}</span></li>
+        </ul>
+        
       </div>
-
-      <ul class="search-summoner-results" ng-show="summoners">
-        <li ng-repeat="item in summoners" ng-click="goTo(item)">{{item.name}} <small> | level: {{item.summonerLevel}} </small> <span class="search-summoner-results-server">{{item.region}}</span></li>
-      </ul>
+      
     </div>
   </div>
 

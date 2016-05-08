@@ -4,6 +4,7 @@
         color:white;
     }
     &-percentage{
+        margin-bottom: 100px;
         span{
             font-weight:900;
         }
@@ -14,42 +15,96 @@
             color:red;
         }
         &-circle{
-            background:rgba(0,0,0,.5);
+            background-color: $transparent-black-5;
             border-radius:100%;
             width: 100px;
             height: 100px;
-            margin: auto;
-            border-radius: 100%;
-            border: 5px solid rgba(0,0,0,.5);
+            margin: 10px auto;
+            @include border-radius(100%);
+            border: 5px solid $transparent-white-5;
             h1{
-                line-height:60px;
+                line-height:50px;
             }
         }
     }
     &-summoner{
         &-card{
-            background-size:cover;
-            height:300px;
+            background-color: $transparent-black-5;
             position:relative;
             margin-bottom: 20px;
+            @include border-radius(10px);
+            overflow: hidden;
+            padding-top:10px;
+            border: 1px solid $transparent-white-3;
         }
         
-        &-mastery{
-            
+        &-champion{
+            background-image:image-url('champion-portrait-with-mastery.png');
+            width: 137px;
+            height: 211px;
+            margin: auto;
+            position: relative;
+            &-image{
+                border-radius: 100%;
+                overflow: hidden;
+                position: absolute;
+                width: 100px;
+                height: 100px;
+                top: 20px;
+                left: 20px;
+                img{
+                    width:100%;
+                 }   
+            }
+            &-mastery{
+            }
         }
+        &-score{
+            padding: 0 10px;
+            &-mastery, &-total, &-level{
+               border-bottom:1px solid $transparent-white-3;
+            }
+            &-total{
+                
+            }
+            &-level{
+                
+            }
+        }
+        
         &-name{
-            position: absolute;
-            bottom: 0;
-            text-align: center;
-            width: 100%;
-            right: 0;
-            left: 0;
-            line-height: 30px;
             height: 30px;
-            background: rgba(0,0,0,.5);
+            background: $transparent-black-5;
         }
         &-most-played{
-            
+            padding: 20px;
+            &-champion{
+                border-radius:100%;
+                overflow:hidden;
+                border: 1px solid white;
+                margin:-10px;
+                img{
+                    width:100%;
+                }
+            }
         }
     }
+}
+
+
+.biggest-threat, .weakest-link{
+    text-transform: uppercase;
+    border:{
+        top:1px solid $transparent-white-3;
+        bottom: 1px solid $transparent-white-3;
+    };
+}
+.top-team{
+    .biggest-threat, .weakest-link{
+        margin-top: -30px;
+        margin-bottom: 7px;
+    }
+}
+.bottom-team{
+    margin-bottom: 20px;
 }

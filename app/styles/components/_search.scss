@@ -3,6 +3,9 @@
   &-container{
 
   }
+  &-inner-container{
+    position:relative;
+  }
 
   &-input{
     position: relative;
@@ -38,6 +41,7 @@
   }
 
   &-results{
+    position:absolute;
     margin:0;
     padding:0;
     list-style: none;
@@ -50,6 +54,7 @@
     background: rgba(255,255,255,.8);
     max-height: 400px;
     overflow: auto;
+    z-index:999;
 
     li{
       padding:10px 20px;
@@ -61,6 +66,10 @@
       }
       &:hover{
         background: white;
+      }
+      .summoner-level{
+        padding-left:10px;
+        color:$gray-light;
       }
     }
 
