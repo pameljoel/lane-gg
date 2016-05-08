@@ -15,6 +15,10 @@ This web application is meant as a mean to display champion mastery data in a me
 
 The aim of this web application is not to give the true result of a match, but to let the user know what are the starting odds of winning, who are the greatest threats and the weakest links in match, so they can adjust their gameplay accordingly without giving them unfair advantages. 
 
+# Frontend application
+
+**Technology stack :** angular, node, bower, grunt, compass, yeoman
+
 ## Build & development
 
 Run `grunt` for building and `grunt serve` for preview.
@@ -23,6 +27,15 @@ Run `grunt` for building and `grunt serve` for preview.
 
 Running `grunt test` will run the unit tests with karma.
 
+# Backend application
+
+**Technology stack :** java 8, kotlin, spring boot, gradle, rxjava
+
+## Build & development
+* make sure to have a [jdk 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) installed
+* set the `riot.api.key` as environment property (or modify the src/main/resources/application.properties)
+* run ./gradlew bootRun
+* the application should be available at http://localhost:8080
 
 ## Backend technical Todo list
 
@@ -34,4 +47,3 @@ Running `grunt test` will run the unit tests with karma.
 * [ ] Introduce caching
 * [ ] Make jackson work with kotlin data classes
 * [ ] Use an async http client
-*
