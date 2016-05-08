@@ -1,85 +1,85 @@
 package gg.lane.remote.championmastery.dto;
 
 public class ChampionMasteryDTO {
-  private long championIdentry;
-  private int championLevelcombination;
-  private int championPointschampionLevel;
-  private long championPointsSinceLastLevelchampion;
-  private long championPointsUntilNextLevelchampion;
-  private boolean chestGrantedseason;
-  private String highestGradeseason;
-  private long lastPlayTimeformat;
-  private long playerIdentry;
+  private long championId;
+  private int championLevel;
+  private int championPoints;
+  private long championPointsSinceLastLevel;
+  private long championPointsUntilNextLevel;
+  private boolean chestGranted;
+  private String highestGrade;
+  private long lastPlayTime;
+  private long playerId;
 
-  public long getChampionIdentry() {
-    return championIdentry;
+  public long getChampionId() {
+    return championId;
   }
 
-  public void setChampionIdentry(long championIdentry) {
-    this.championIdentry = championIdentry;
+  public void setChampionId(long championId) {
+    this.championId = championId;
   }
 
-  public int getChampionLevelcombination() {
-    return championLevelcombination;
+  public int getChampionLevel() {
+    return championLevel;
   }
 
-  public void setChampionLevelcombination(int championLevelcombination) {
-    this.championLevelcombination = championLevelcombination;
+  public void setChampionLevel(int championLevel) {
+    this.championLevel = championLevel;
   }
 
-  public int getChampionPointschampionLevel() {
-    return championPointschampionLevel;
+  public int getChampionPoints() {
+    return championPoints;
   }
 
-  public void setChampionPointschampionLevel(int championPointschampionLevel) {
-    this.championPointschampionLevel = championPointschampionLevel;
+  public void setChampionPoints(int championPoints) {
+    this.championPoints = championPoints;
   }
 
-  public long getChampionPointsSinceLastLevelchampion() {
-    return championPointsSinceLastLevelchampion;
+  public long getChampionPointsSinceLastLevel() {
+    return championPointsSinceLastLevel;
   }
 
-  public void setChampionPointsSinceLastLevelchampion(long championPointsSinceLastLevelchampion) {
-    this.championPointsSinceLastLevelchampion = championPointsSinceLastLevelchampion;
+  public void setChampionPointsSinceLastLevel(long championPointsSinceLastLevel) {
+    this.championPointsSinceLastLevel = championPointsSinceLastLevel;
   }
 
-  public long getChampionPointsUntilNextLevelchampion() {
-    return championPointsUntilNextLevelchampion;
+  public long getChampionPointsUntilNextLevel() {
+    return championPointsUntilNextLevel;
   }
 
-  public void setChampionPointsUntilNextLevelchampion(long championPointsUntilNextLevelchampion) {
-    this.championPointsUntilNextLevelchampion = championPointsUntilNextLevelchampion;
+  public void setChampionPointsUntilNextLevel(long championPointsUntilNextLevel) {
+    this.championPointsUntilNextLevel = championPointsUntilNextLevel;
   }
 
-  public boolean isChestGrantedseason() {
-    return chestGrantedseason;
+  public boolean isChestGranted() {
+    return chestGranted;
   }
 
-  public void setChestGrantedseason(boolean chestGrantedseason) {
-    this.chestGrantedseason = chestGrantedseason;
+  public void setChestGranted(boolean chestGranted) {
+    this.chestGranted = chestGranted;
   }
 
-  public String getHighestGradeseason() {
-    return highestGradeseason;
+  public String getHighestGrade() {
+    return highestGrade;
   }
 
-  public void setHighestGradeseason(String highestGradeseason) {
-    this.highestGradeseason = highestGradeseason;
+  public void setHighestGrade(String highestGrade) {
+    this.highestGrade = highestGrade;
   }
 
-  public long getLastPlayTimeformat() {
-    return lastPlayTimeformat;
+  public long getLastPlayTime() {
+    return lastPlayTime;
   }
 
-  public void setLastPlayTimeformat(long lastPlayTimeformat) {
-    this.lastPlayTimeformat = lastPlayTimeformat;
+  public void setLastPlayTime(long lastPlayTime) {
+    this.lastPlayTime = lastPlayTime;
   }
 
-  public long getPlayerIdentry() {
-    return playerIdentry;
+  public long getPlayerId() {
+    return playerId;
   }
 
-  public void setPlayerIdentry(long playerIdentry) {
-    this.playerIdentry = playerIdentry;
+  public void setPlayerId(long playerId) {
+    this.playerId = playerId;
   }
 }
