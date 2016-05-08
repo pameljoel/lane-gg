@@ -20,10 +20,7 @@ class ParticipantMapper @Autowired constructor(val championMapper: ChampionMappe
     val championMastery = masteries.find { it.championId == champion.id }
     val mostPlayed = masteries.sortedBy { it.championPoints }.reversed().take(5).map { championMapper.map(champions[it.championId]!!) }
 
-    //FIXME
-    val biggestThreat = Random().nextBoolean()
-    val weakestLink = !biggestThreat && Random().nextBoolean()
-    return Participant(participant.summonerId, participant.summonerName, Team.fromCode(participant.teamId), biggestThreat, weakestLink, champion, mastery(championMastery), mostPlayed)
+    return Participant(participant.summonerId, participant.summonerName, Team.fromCode(participant.teamId), false, false, champion, mastery(championMastery), mostPlayed)
   }
 
   fun mastery(mastery: ChampionMasteryDTO?): ChampionMastery {
