@@ -34,8 +34,8 @@ class ParticipantMapper @Autowired constructor(val championMapper: ChampionMappe
       val lastPlayed = Instant.ofEpochMilli(mastery.lastPlayTime)
       val duration = Duration.between(lastPlayed, Instant.now())
 
-      return  ChampionMastery(bestScore ?: "", level, score, "${duration.toDays()} day(s) ago")
+      return  ChampionMastery(bestScore ?: "N/A", level, score, "${duration.toDays()} day(s) ago")
     }
-    return ChampionMastery("", 0, 0, "Never")
+    return ChampionMastery("N/A", 0, 0, "Unknown")
   }
 }
