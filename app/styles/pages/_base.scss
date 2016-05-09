@@ -1,10 +1,11 @@
 html, body{
-  height: 100%;
+  min-height: 100%;
 }
 body{
   background: image-url('lol-wallpaper.jpg');
   -webkit-background-size: cover;
   background-size: cover;
+  background-position: center center;
 }
 .page-wrap{
     min-height: 100%;

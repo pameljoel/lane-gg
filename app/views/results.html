@@ -1,7 +1,9 @@
 <div class="current-game-percentage-container">
     
+    <span us-spinner spinner-on="loading"></span>
+    
     <!-- user NOT in a match -->
-    <div class="row" ng-hide="match">
+    <div class="row" ng-hide="match || loading">
         
         <div class="row">
           <div class="col-xs-12">
@@ -23,7 +25,7 @@
     </div>
     
     <!-- user in a match -->
-    <div class="row" ng-show="match">
+    <div class="row" ng-show="match && !loading">
         <div class="col-xs-12">
             <div class="current-game-percentage">
                 <div class="winning" ng-show="match.winningOdds >= 50">
