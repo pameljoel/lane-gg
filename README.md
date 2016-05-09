@@ -3,6 +3,8 @@
 This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
 version 0.15.1.
 
+You can preview a live version of the app [here](https://lane-gg.herokuapp.com/) (be patient, it make some time to start since heroku automatically puts applications to sleep)
+
 ## concept
 
 Lolgame.gg is a web application which aims to provide useful information about a summoner's teammates and adversaries.
