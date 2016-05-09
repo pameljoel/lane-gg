@@ -1,0 +1,36 @@
+<!doctype html> <html> <head> <meta charset="utf-8"> <title></title> <meta name="description" content=""> <meta name="viewport" content="width=device-width"> <!-- Place favicon.ico and apple-touch-icon.png in the root directory --> <link rel="stylesheet" href="styles/main.css"> </head> <body ng-app="lolAppApp"> <!--[if lte IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]--> <!-- Add your site or application content here --> <div class="page-wrap"> <!--
+      <div class="header">
+        <div class="navbar navbar-default" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+  
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+  
+              <a class="navbar-brand" href="#/">Lane.gg</a>
+            </div>
+  
+            <div class="collapse navbar-collapse" id="js-navbar-collapse">
+  
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="#/">Home</a></li>
+                <li><a ng-href="#/results">Results</a></li>
+                <li><a ng-href="#/">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      --> <div class="container"> <div ng-view=""></div> </div> </div> <footer class="footer"> <div class="container"> <p><span class="glyphicon glyphicon-heart"></span> Made for the League of Legends API challenge 2016</p> <p><small>Lane.gg isn’t endorsed by Riot Games and doesn’t reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.</small></p> </div> </footer> <!-- Google Analytics: change UA-XXXXX-X to be your site's ID --> <script>!function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');</script> <script src="scripts/vendor.87d8fff2.js"></script> <script src="scripts/scripts.e9903f82.js"></script> </body> </html>

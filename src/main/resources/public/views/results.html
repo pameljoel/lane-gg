@@ -1,0 +1,170 @@
+<div class="current-game-percentage-container">
+    
+    <span us-spinner spinner-on="loading"></span>
+    
+    <!-- user NOT in a match -->
+    <div class="row" ng-hide="match || loading">
+        
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="logo-container">
+                <a href="#/">
+                  <img src="images/lolgame.png" alt="lange-gg logo"/>
+                </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-xs-12">
+            <div class="current-game-percentage">
+                <h1>Sorry</h1>
+                <p>this users seems not to be in a match right now, try again later.</p>
+                <a href="#/"><button class="btn btn-large">go back to home</button></a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- user in a match -->
+    <div class="row" ng-show="match && !loading">
+        <div class="col-xs-12">
+            <div class="current-game-percentage">
+                <div class="winning" ng-show="match.winningOdds >= 50">
+                    <h1>
+                        THE ODDS ARE <br/>
+                        <span class="winning">IN YOUR FAVOR</span>
+                    </h1>
+                    <div class="current-game-percentage-circle">
+                        <h1>{{match.winningOdds}}%</h1>
+                    </div>
+                </h1>
+                </div>
+                <div class="losing" ng-show="match.winningOdds < 50">
+                    <h1>
+                        THE ODDS ARE <br/>
+                        <span class="losing" >NOT IN YOUR FAVOR</span>
+                    </h1>
+                    <div class="current-game-percentage-circle">
+                        <h1>{{match.winningOdds}}%</h1>
+                    </div>
+                </h1>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+
+    
+
+
+    <div class="row top-team" ng-show="match">
+
+
+        <!-- character card start PLAYER'S TEAM -->
+        <div class="col-sm-1"></div>
+        <div class="col-sm-2"  ng-repeat="item in match.alliedTeam">
+            
+            
+            <div class="biggest-threat" ng-show="item.biggestThreat">biggest threat</div>
+            <div class="weakest-link" ng-show="item.weakestLink">weakest link</div>
+                
+            <div class="current-game-summoner-card blue-team">
+                
+                <div class="current-game-summoner-champion">
+                    <div class="current-game-summoner-champion-image">
+                        <img src="{{item.champion.icon}}"></img>
+                    </div>
+                    <div class="current-game-summoner-champion-mastery-{{item.championMastery.level}}"></div>
+                </div>
+                
+                <div class="current-game-summoner-score">
+                    <div class="current-game-summoner-score-mastery">
+                        <h2>{{item.championMastery.bestScore}}</h2>
+                        <p>best rank with championk</p>
+                    </div>
+                    <div class="current-game-summoner-score-total">
+                        <h2>{{item.championMastery.score}}</h2>
+                        <p>mastery total score</p>
+                    </div>
+                    <div class="current-game-summoner-score-level">
+                        <h2>level {{item.championMastery.level}}</h2>
+                        <p>mastery level</p>
+                    </div>
+                </div>
+                
+                <div class="current-game-summoner-most-played">
+                    <div class="row">
+                        <div class="col-xs-4" ng-repeat="champion in item.mostPlayed | limitTo: 3">
+                            <div class="current-game-summoner-most-played-champion">
+                                <img src="{{champion.icon}}" alt="most played champion"></img>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="current-game-summoner-name">{{item.summonerName}}</div>
+
+            </div>
+
+        </div>
+
+        <!-- character card end -->
+
+    </div>
+
+    <div class="row bottom-team">
+
+       <!-- character card start PLAYER'S TEAM -->
+        <div class="col-sm-1"></div>
+        <div class="col-sm-2"  ng-repeat="item in match.ennemyTeam">
+            
+            <div class="current-game-summoner-card red-team">
+                
+                <div class="current-game-summoner-champion">
+                    <div class="current-game-summoner-champion-image">
+                        <img src="{{item.champion.icon}}"></img>
+                    </div>
+                    <div class="current-game-summoner-champion-mastery-{{item.championMastery.level}}"></div>
+                </div>
+                
+                <div class="current-game-summoner-score">
+                    <div class="current-game-summoner-score-mastery">
+                        <h2>{{item.championMastery.bestScore}}</h2>
+                        <p>best rank with championk</p>
+                    </div>
+                    <div class="current-game-summoner-score-total">
+                        <h2>{{item.championMastery.score}}</h2>
+                        <p>mastery total score</p>
+                    </div>
+                    <div class="current-game-summoner-score-level">
+                        <h2>level {{item.championMastery.level}}</h2>
+                        <p>mastery level</p>
+                    </div>
+                </div>
+                
+                <div class="current-game-summoner-most-played">
+                    <div class="row">
+                        <div class="col-xs-4" ng-repeat="champion in item.mostPlayed | limitTo: 3">
+                            <div class="current-game-summoner-most-played-champion">
+                                <img src="{{champion.icon}}" alt="most played champion"></img>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="current-game-summoner-name">{{item.summonerName}}</div>
+
+            </div>
+
+            <div class="biggest-threat" ng-show="item.biggestThreat">biggest threat</div>
+            <div class="weakest-link" ng-show="item.weakestLink">weakest link</div>
+        </div>
+
+        <!-- character card end -->
+        
+        
+                
+
+    </div>
+
+</div>
