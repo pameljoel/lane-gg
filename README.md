@@ -20,12 +20,20 @@ The aim of this web application is not to give the true result of a match, but t
 **Technology stack :** angular, node, bower, grunt, compass, yeoman
 
 ## Build & development
-
-Run `grunt` for building and `grunt serve` for preview.
+* You need to have compass installed `gem install compass`
+* You need [nodejs](https://nodejs.org/en/) installed
+* Install the grunt cli `npm install -g grunt-cli`
+* Install bower `npm install -g bower`
+* Retrieve node dependencies `npm install`
+* Retrieve bower dependencies `bower install`
+* Run `grunt` for building and `grunt serve` for preview.
 
 ## Testing
 
 Running `grunt test` will run the unit tests with karma.
+
+By default, the frontend application connects to the backend which is deployed on heroku.
+If you wish to use a local server you should edit the `app/scripts/config/config.js` file and replace https://lane-gg.herokuapp.com with http://localhost:8080.
 
 # Backend application
 

@@ -13,7 +13,7 @@
           </form>
         </div>
   
-        <ul class="search-summoner-results" ng-show="summoners">
+        <ul class="search-summoner-results" ng-show="summoners && !loading">
           <li ng-repeat="item in summoners" ng-click="goTo(item)">{{item.name}} <small class="summoner-level"> level: {{item.summonerLevel}} </small> <span class="search-summoner-results-server">{{item.region}}</span></li>
         </ul>
         

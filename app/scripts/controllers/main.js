@@ -8,25 +8,21 @@
  * Controller of the lolAppApp
  */
 angular.module('lolAppApp')
-  .controller('MainCtrl', function ($scope, $http, $location) {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-    
-
+  .controller('MainCtrl', function ($scope, $http, $location, backendUrl) {
+    $scope.loading = false;
+   
     $scope.submit = function(summonerName){
-      console.log('looking for summoner ' + summonerName);
-        
-      $http.get('https://lane-gg.herokuapp.com/api/summoner/' + summonerName).then(function(result){
+      if (summonerName){
+        $scope.loading = true;
+        $http.get(backendUrl + '/api/summoner/' + summonerName).then(function(result){
           $scope.summoners = result.data;
-      });
-      
+          $scope.loading = false;
+        });
+      }
     };
     
     $scope.goTo = function(summoner){
-      $location.path("/results/" + summoner.region + "/" + summoner.id);
+      $location.path('/results/' + summoner.region + '/' + summoner.id);
     };
     
   });

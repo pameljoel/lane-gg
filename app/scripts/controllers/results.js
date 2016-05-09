@@ -8,11 +8,11 @@
  * Controller of the lolAppApp
  */
 angular.module('lolAppApp')
-  .controller('ResultsCtrl', function ($scope, $http, $routeParams) {
+  .controller('ResultsCtrl', function ($scope, $http, $routeParams, backendUrl) {
     $scope.summonerId = $routeParams.id;
     
     $scope.loading = true;
-    $http.get('https://lane-gg.herokuapp.com/api/summoner/'+$routeParams.region + '/' + $routeParams.id + '/match')
+    $http.get(backendUrl + '/api/summoner/'+$routeParams.region + '/' + $routeParams.id + '/match')
       .then(function(result){
         $scope.loading = false;
         $scope.match = result.data;
