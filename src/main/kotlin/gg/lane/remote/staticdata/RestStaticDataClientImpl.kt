@@ -5,6 +5,8 @@ import gg.lane.remote.staticdata.dto.ChampionDTO
 import gg.lane.remote.staticdata.dto.DataDTO
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.core.ParameterizedTypeReference
+import org.springframework.http.HttpMethod
 import org.springframework.scheduling.annotation.AsyncResult
 import org.springframework.stereotype.Component
 import org.springframework.web.client.RestOperations
@@ -24,6 +26,15 @@ class RestStaticDataClientImpl @Autowired constructor(@Value("\${riot.api.key}")
         .data
         .map { entry -> Pair(entry.key.toLong(), entry.value)}
         .toMap())
+  }
+
+  override fun gameVersions(): AsyncResult<List<String>> {
+    val uri = UriComponentsBuilder.fromHttpUrl("https://global.api.pvp.net/api/lol/static-data/euw/v1.2/versions")
+      .queryParam("api_key", apiKey)
+
+    return AsyncResult(
+      restOperations.exchange(uri.toUriString(), HttpMethod.GET, null, object : ParameterizedTypeReference<List<String>>() {}).body
+    )
   }
 
 }

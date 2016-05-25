@@ -7,4 +7,5 @@ interface RestStaticDataClient {
 
   fun champions(): AsyncResult<Map<Long, ChampionDTO>>
 
+  fun gameVersions(): AsyncResult<List<String>>
 }
